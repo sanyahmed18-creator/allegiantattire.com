@@ -9,7 +9,7 @@
    No dependencies, no build step.
    ------------------------------------------------------------------------- */
 import { createServer } from "node:http";
-import { readFile, stat } from "node:fs/promises";
+import { readFile, stat, mkdir, writeFile } from "node:fs/promises";
 import { extname, join, normalize, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -36,8 +36,49 @@ const MIME = {
   ".txt": "text/plain; charset=utf-8",
 };
 
+/* ---------------------------------------------------------------------------
+   /__upload — receives a video posted by tools/grab-video.html. That page runs
+   in the reviewer's browser (which can reach hosts this sandbox cannot) and
+   streams the file here; it lands in ./video-inbox/.
+   ------------------------------------------------------------------------- */
+const INBOX = join(ROOT, "video-inbox");
+const MAX_BYTES = 512 * 1024 * 1024;
+
+function handleUpload(req, res) {
+  const name = (new URL(req.url, "http://x").searchParams.get("name") || "clip.mp4")
+    .replace(/[^\w.\-]+/g, "_")
+    .slice(-80);
+  const chunks = [];
+  let size = 0;
+  let tooBig = false;
+  req.on("data", (c) => {
+    size += c.length;
+    if (size > MAX_BYTES) { tooBig = true; req.destroy(); return; }
+    chunks.push(c);
+  });
+  req.on("error", () => { try { res.writeHead(500).end("upload error"); } catch {} });
+  req.on("end", async () => {
+    if (tooBig) { res.writeHead(413).end("too big"); return; }
+    try {
+      await mkdir(INBOX, { recursive: true });
+      const file = join(INBOX, Date.now() + "-" + name);
+      await writeFile(file, Buffer.concat(chunks));
+      console.log(`received ${name} → ${file} (${(size / 1048576).toFixed(1)} MB)`);
+      res.writeHead(200, { "content-type": "application/json" });
+      res.end(JSON.stringify({ ok: true, bytes: size, file }));
+    } catch (err) {
+      console.error("upload failed:", err.message);
+      res.writeHead(500).end("upload failed: " + err.message);
+    }
+  });
+}
+
 const server = createServer(async (req, res) => {
   try {
+    if (req.method === "POST" && req.url.startsWith("/__upload")) {
+      await handleUpload(req, res);
+      return;
+    }
     let path = decodeURIComponent(new URL(req.url, "http://x").pathname);
     if (path === "/" || path === "") path = "/" + HOME;
     // keep the request inside the repo
