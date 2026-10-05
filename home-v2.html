@@ -1,456 +1,252 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/logo.png?v=3" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Allegiant Attire — custom clothing manufacturing in Ajman & Dubai, UAE. Blank & printed tees, polos, hoodies, vests, activewear, caps and uniforms. In-house DTF, embroidery & cut-and-sew. Call +971582045242." />
-    <title>Allegiant Attire | Custom Clothing Mfg — Ajman, UAE</title>
+    <meta name="description" content="Allegiant Attire — custom clothing manufacturer in Ajman & Dubai, UAE. Blanks & custom apparel on the rail: tees, polos, hoodies, activewear, caps, uniforms. In-house DTF, embroidery & cut-and-sew. Call +971582045242." />
+    <title>Allegiant Attire — On the Rail | Custom Clothing Mfg, Ajman UAE</title>
     <link rel="apple-touch-icon" href="/logo.png?v=3" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/home-v2.css?v=1" />
-    <script src="/catalog.js?v=1" defer></script>
-    <script src="/home-v2.js?v=1" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/home-v2.css?v=2" />
+    <script src="/catalog.js?v=2" defer></script>
+    <script src="/home-v2.js?v=2" defer></script>
   </head>
   <body>
-    <a class="skip" href="#main">SKIP TO CONTENT</a>
+    <a class="skip" href="#rails">SKIP TO THE RAIL</a>
 
-    <!-- ══════════ top utility bar ══════════ -->
-    <div class="topbar">
-      <div class="shell topbar-in">
-        <span class="tb-tag">ALLEGIANT ATTIRE · WHOLESALE · AJMAN — UAE</span>
-        <span class="tb-mid">IN-HOUSE DTF · SCREEN · EMBROIDERY · CUT &amp; SEW</span>
-        <span class="tb-right">
-          <a href="tel:+971582045242">CALL: +971 58 204 5242</a>
-          <a class="tb-quote" href="#quote">GET A QUOTE</a>
-          <span class="tb-hours">MON–SAT 9–7</span>
-        </span>
+    <!-- ══════════ minimal header ══════════ -->
+    <header class="top">
+      <button class="top-menu" id="menuBtn" type="button" aria-expanded="false" aria-controls="menu">
+        <span class="mi" aria-hidden="true"><i></i><i></i><i></i></span> MENU
+      </button>
+
+      <a class="top-brand" href="/home-v2.html" aria-label="Allegiant Attire — home">
+        <img src="/logo.png?v=3" alt="" />
+        <b>ALLEGIANT ATTIRE</b>
+      </a>
+
+      <div class="top-right">
+        <a class="top-shop" href="#line">SHOP <span aria-hidden="true">↗</span></a>
+        <button class="top-bag" id="bagBtn" type="button">BAG <span id="bagCount">0</span></button>
       </div>
-    </div>
-
-    <!-- ══════════ header ══════════ -->
-    <header class="hdr" id="hdr">
-      <div class="shell hdr-in">
-        <a class="brand" href="/home-v2.html" aria-label="Allegiant Attire — home">
-          <img src="/logo.png?v=3" alt="" width="46" height="46" />
-          <span class="brand-txt">
-            <b>ALLEGIANT ATTIRE</b>
-            <i>CLOTHING MANUFACTURER — UAE</i>
-          </span>
-        </a>
-
-        <nav class="nav" id="nav" aria-label="Primary">
-          <a href="#categories">CATEGORIES</a>
-          <a href="#rails">THE RAIL</a>
-          <a href="#services">SERVICES</a>
-          <a href="#process">PROCESS</a>
-          <a href="#studio">STUDIO</a>
-          <a href="#quote">CONTACT</a>
-        </nav>
-
-        <div class="hdr-act">
-          <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
-            <span class="ico-sun">◐</span>
-          </button>
-          <button class="bag-btn" id="bagBtn" type="button" aria-label="Open order bag">
-            BAG <span class="bag-count" id="bagCount">0</span>
-          </button>
-          <a class="wa-btn" href="https://wa.me/971582045242" target="_blank" rel="noopener">WHATSAPP</a>
-          <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false">
-            <span></span><span></span><span></span>
-          </button>
-        </div>
-      </div>
-      <div class="hdr-progress" id="hdrProgress" aria-hidden="true"></div>
     </header>
 
-    <main id="main">
-      <!-- ══════════ hero ══════════ -->
-      <section class="hero">
-        <div class="shell hero-in">
-          <div class="hero-copy">
-            <p class="eyebrow">
-              <span class="eb-num">N°01</span>
-              <span>CLOTHING MFG IN-HOUSE</span>
-              <span>DTF · SAME-DAY</span>
-              <span>DUBAI / SHARJAH / ABU DHABI</span>
-            </p>
-
-            <h1 class="hero-h1">
-              YOUR ONE-STOP
-              <em>PARTNER FOR CUSTOM</em>
-              CLOTHING IN UAE
-            </h1>
-
-            <p class="hero-sub">
-              Blank &amp; custom apparel — men's, women's, kids, uniforms, caps &amp; branding.
-              Cut, stitched &amp; printed under one roof. Urgent event in hours? Our in-house DTF
-              facility prints while others quote.
-            </p>
-
-            <div class="hero-cta">
-              <a class="btn btn-solid" href="#rails">SHOP BLANKS</a>
-              <a class="btn btn-line" href="#quote">BUILD A QUOTE</a>
-            </div>
-
-            <dl class="stats" id="stats">
-              <div><dt data-count="9" data-suffix="+">0</dt><dd>YEARS MFG</dd></div>
-              <div><dt data-count="2.4" data-suffix="M">0</dt><dd>PCS DELIVERED</dd></div>
-              <div><dt data-count="1" data-prefix="" data-suffix="–2 DAY">0</dt><dd>UAE DELIVERY</dd></div>
-            </dl>
-          </div>
-
-          <div class="hero-media">
-            <figure class="hero-fig">
-              <img src="https://allegiantattire.store/images/hero-apparel.webp" alt="Blank apparel hanging on the studio rail" />
-              <figcaption><b>FIG. 01 — BLANK RAIL</b><span>RAW / 240 GSM</span></figcaption>
-            </figure>
-
-            <div class="hero-urgent">
-              <p class="hu-k">URGENT ORDER?</p>
-              <p class="hu-v">Printed &amp; pressed <b>within hours.</b></p>
-              <a class="hu-a" href="#services">SERVICES →</a>
-            </div>
-
-            <div class="hero-status">
-              <span class="dot" aria-hidden="true"></span>
-              <span>FACTORY STATUS: <b>RUNNING</b></span>
-              <span class="hs-slot">SLOT 04 — DTF LINE</span>
-            </div>
-          </div>
+    <!-- ══════════ menu panel ══════════ -->
+    <div class="menu" id="menu" aria-hidden="true">
+      <div class="menu-in">
+        <div class="menu-col">
+          <p class="lab">CATEGORIES</p>
+          <nav id="menuCats" class="menu-cats"></nav>
         </div>
-      </section>
-
-      <!-- ══════════ ticker ══════════ -->
-      <div class="ticker" aria-hidden="true">
-        <div class="ticker-track" id="tickerTrack"></div>
+        <div class="menu-col">
+          <p class="lab">HOUSE</p>
+          <nav class="menu-links">
+            <a href="#rails">The rail</a>
+            <a href="#services">Print &amp; stitch</a>
+            <a href="#process">How it works</a>
+            <a href="#uniforms">Uniform division</a>
+            <a href="#reviews">Clients</a>
+            <a href="#faq">FAQ</a>
+            <a href="#quote">Get a quote</a>
+          </nav>
+        </div>
+        <div class="menu-col">
+          <p class="lab">FACILITY</p>
+          <p class="menu-addr">NEW INDUSTRIAL AREA 2<br />AJMAN, UAE<br />MON–SAT · 9AM–7PM</p>
+          <p class="menu-addr"><a href="tel:+971582045242">+971 58 204 5242</a><br /><a href="mailto:info@allegiantattire.store">info@allegiantattire.store</a></p>
+          <a class="pill pill-ink" href="https://wa.me/971582045242" target="_blank" rel="noopener">WHATSAPP US ↗</a>
+        </div>
       </div>
+      <button class="menu-close" id="menuClose" type="button" aria-label="Close menu">CLOSE ✕</button>
+    </div>
 
-      <!-- ══════════ 01 · category index ══════════ -->
-      <section class="sec" id="categories">
-        <div class="shell">
-          <header class="sec-head">
-            <div>
-              <p class="sec-eyebrow">[01] &nbsp;CATEGORY INDEX — TAP TO OPEN THE FULL CATEGORY</p>
-              <h2 class="sec-h2">BROWSE THE <em>FLOOR.</em></h2>
-            </div>
-            <p class="sec-note">
-              95 SKUs, live stock, factory-direct tiers from 12 pcs to 50k.
-              Every category ships blank or finished with your branding.
-            </p>
-          </header>
-          <div class="cat-grid" id="catGrid"></div>
+    <main>
+      <!-- ══════════ THE RAIL ══════════ -->
+      <section class="rail" id="rails">
+        <div class="rail-labels">
+          <span class="lab">ON THE RAIL</span>
+          <span class="rail-sep" aria-hidden="true"></span>
+          <span class="lab lab-mute">ALLEGIANT ATTIRE / AJMAN — UAE</span>
         </div>
-      </section>
 
-      <!-- ══════════ 02 · THE RAIL (tabbed, motion rail) ══════════ -->
-      <section class="sec rail-sec" id="rails">
-        <div class="shell">
-          <header class="sec-head">
-            <div>
-              <p class="sec-eyebrow">[02] &nbsp;THE RAIL — DRAG IT, IT KEEPS GLIDING</p>
-              <h2 class="sec-h2">PULL FROM <em>THE RAIL.</em></h2>
-            </div>
-            <p class="sec-note">
-              Flick through the whole line like a rail in the sample room. Hover to pause,
-              drag to scrub, use ← → to step one piece at a time.
-            </p>
-          </header>
+        <div class="rail-viewport" id="railViewport">
+          <div class="rail-bar" aria-hidden="true"></div>
+          <div class="rail-track" id="railTrack"></div>
+          <span class="rail-cue" id="railCue" aria-hidden="true">DRAG ⟷</span>
+        </div>
 
-          <div class="rail-tabs" id="railTabs" role="tablist" aria-label="Product categories"></div>
-
-          <div class="rail-shell" data-rail-shell>
-            <div class="rail-bar" aria-hidden="true">
-              <span class="rb-line"></span>
-              <span class="rb-hooks" id="railHooks"></span>
-              <span class="rb-label" id="railBarLabel">RAIL — T-SHIRTS · 10 PCS</span>
-            </div>
-
-            <div class="rail-stage">
-              <div class="rail-scroll" id="railScroll" tabindex="0" role="region"
-                   aria-label="Products on the rail">
-                <div class="rail-track" id="railTrack"></div>
-              </div>
-
-              <div class="rail-cue" id="railCue" aria-hidden="true">DRAG →</div>
-            </div>
-
-            <div class="rail-foot">
-              <div class="rail-nav">
-                <button type="button" class="rn" data-rail-prev aria-label="Previous products">←</button>
-                <button type="button" class="rn" data-rail-next aria-label="Next products">→</button>
-              </div>
-              <div class="rail-progress" aria-hidden="true"><span id="railProgress"></span></div>
-              <p class="rail-count"><b id="railCount">01</b> / <span id="railTotal">10</span></p>
-              <a class="btn btn-line btn-sm" id="railOpen" href="#">OPEN CATEGORY →</a>
-            </div>
+        <div class="rail-caption">
+          <h2 class="rail-name" id="railName">Classic Crew Tee 01</h2>
+          <p class="rail-meta" id="railMeta">T-SHIRTS · MOQ 10 · AED 29</p>
+          <p class="rail-hint">Hover to lift · Click to explore</p>
+          <div class="rail-actions">
+            <button class="pill" id="railExplore" type="button">EXPLORE THE RAIL ↗</button>
+            <button class="pill pill-ghost" id="railOpen" type="button">OPEN CATEGORY ↗</button>
           </div>
         </div>
       </section>
 
-      <!-- ══════════ 03 · fresh off the rail (endless drift) ══════════ -->
-      <section class="sec drift-sec" id="new">
-        <div class="shell">
-          <header class="sec-head">
-            <div>
-              <p class="sec-eyebrow">[03] &nbsp;FRESH OFF THE RAIL — ENDLESS GLIDE</p>
-              <h2 class="sec-h2">THIS WEEK'S <em>PICKS.</em></h2>
-            </div>
-            <p class="sec-note">One piece from every category, drifting past at sample-rail speed.</p>
-          </header>
+      <!-- ══════════ THE LINE (categories) ══════════ -->
+      <section class="sec" id="line">
+        <div class="sec-head">
+          <p class="lab">THE LINE — 95 SKUS / 11 CATEGORIES</p>
+          <h2 class="h2">BLANKS &amp; <em>CUSTOMS,</em> CUT &amp; STITCHED IN AJMAN.</h2>
+          <p class="lede">
+            Men's, women's, kids, uniforms, caps &amp; branding — printed or plain.
+            Urgent event in hours? In-house DTF prints while others quote.
+          </p>
         </div>
-        <div class="drift-shell" data-rail-shell>
-          <div class="rail-bar" aria-hidden="true"><span class="rb-line"></span></div>
-          <div class="rail-scroll" id="driftScroll" role="region" aria-label="This week's picks">
-            <div class="rail-track" id="driftTrack"></div>
-          </div>
-          <div class="drift-fade" aria-hidden="true"></div>
-        </div>
+        <ol class="line" id="lineList"></ol>
       </section>
 
-      <!-- ══════════ 04 · why us ══════════ -->
-      <section class="sec why-sec" id="why">
-        <div class="shell why-in">
-          <div class="why-copy">
-            <p class="sec-eyebrow">[04] &nbsp;ALLEGIANT ATTIRE — WHY US</p>
-            <h2 class="sec-h2">YOUR TRUSTED <em>CLOTHING MFG</em> PARTNER.</h2>
-            <p class="lede">
-              One of the largest wholesale suppliers of blank &amp; custom clothing in the UAE.
-              T-shirts, polos, joggers, jackets, caps, sportswear &amp; kidswear — specialised
-              expertise, high-grade fabrics, faster turnarounds and honest bulk pricing.
-            </p>
-            <ul class="why-list">
-              <li><b>Specialised Expertise</b><span>Dedicated lines for knits, wovens &amp; headwear.</span></li>
-              <li><b>High-Quality Materials</b><span>180–400 GSM certified fabrics, wash-tested.</span></li>
-              <li><b>Faster Turnarounds</b><span>Same-day DTF · 5-day sampling · 2-wk bulk.</span></li>
-              <li><b>Competitive Pricing</b><span>Factory-direct tiers from 12 pcs to 50k.</span></li>
-            </ul>
-            <div class="hero-cta">
-              <a class="btn btn-solid" href="#quote">START A PROJECT</a>
-              <a class="btn btn-line" href="#process">HOW IT WORKS ↓</a>
-            </div>
-          </div>
-
-          <div class="floor">
-            <div class="floor-top">
-              <span>UNIQUE PRODUCTION PROCESS</span>
-              <span class="floor-qc">QC PASS 99.2%</span>
-            </div>
-            <ol class="floor-steps">
-              <li><b>01</b><span>CUT</span></li>
-              <li><b>02</b><span>STITCH</span></li>
-              <li><b>03</b><span>PRINT</span></li>
-              <li><b>04</b><span>PRESS</span></li>
-              <li><b>05</b><span>PACK</span></li>
-            </ol>
-            <figure class="floor-fig">
-              <img src="https://allegiantattire.store/images/s-factory.webp" alt="Allegiant Attire factory floor in Ajman" />
-              <figcaption><b>FLOOR 02 — STITCHING + PRESS</b><span class="rec">● REC</span></figcaption>
-            </figure>
-            <div class="floor-stats">
-              <div><b data-count="15" data-suffix="+">0</b><span>MACHINES</span></div>
-              <div><b data-count="60" data-suffix="+">0</b><span>STAFF</span></div>
-              <div><b data-count="24" data-suffix="H">0</b><span>RUSH MODE</span></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ══════════ 05 · services ══════════ -->
+      <!-- ══════════ SERVICES ══════════ -->
       <section class="sec" id="services">
-        <div class="shell">
-          <header class="sec-head">
-            <div>
-              <p class="sec-eyebrow">[05] &nbsp;OUR SERVICE — PRINT &amp; STITCH</p>
-              <h2 class="sec-h2">ADVANCED PRINTING &amp; <em>STITCHING.</em></h2>
-            </div>
-            <p class="sec-note">06 METHODS · 01 ROOF · 00 OUTSOURCING</p>
-          </header>
-          <div class="svc-grid" id="svcGrid"></div>
+        <div class="sec-head">
+          <p class="lab">PRINT &amp; STITCH — 06 METHODS · 01 ROOF · 00 OUTSOURCING</p>
+          <h2 class="h2">ADVANCED PRINTING &amp; <em>STITCHING.</em></h2>
         </div>
+        <ol class="svc-list" id="svcList"></ol>
       </section>
 
-      <!-- ══════════ 06 · process ══════════ -->
+      <!-- ══════════ PROCESS ══════════ -->
       <section class="sec" id="process">
-        <div class="shell">
-          <header class="sec-head">
-            <div>
-              <p class="sec-eyebrow">[06] &nbsp;HOW IT WORKS — 6 STEPS</p>
-              <h2 class="sec-h2">FROM IDEA TO <em>DELIVERY.</em></h2>
-            </div>
-            <p class="sec-note">AVG. SAMPLING — 5 DAYS</p>
-          </header>
-          <ol class="proc-grid">
-            <li><b class="pg-n">01</b><span class="pg-step">STEP 01 / 06</span><h3>Connect with us</h3><p>WhatsApp, call or send the quote form. Share qty, sizes &amp; deadline — we reply within 1 business hour.</p></li>
-            <li><b class="pg-n">02</b><span class="pg-step">STEP 02 / 06</span><h3>Design &amp; selection</h3><p>Pick blanks from our catalog or send a tech pack. Free mockups with your logo placed to scale.</p></li>
-            <li><b class="pg-n">03</b><span class="pg-step">STEP 03 / 06</span><h3>Quote &amp; payments</h3><p>Transparent per-unit pricing with print, label &amp; delivery broken out. 50% to start bulk.</p></li>
-            <li><b class="pg-n">04</b><span class="pg-step">STEP 04 / 06</span><h3>Production</h3><p>Cut, stitch &amp; print under one roof. Live photo updates from the floor at every milestone.</p></li>
-            <li><b class="pg-n">05</b><span class="pg-step">STEP 05 / 06</span><h3>Quality control</h3><p>4-point inspection: print adhesion, stitch density, measurements &amp; finishing before packing.</p></li>
-            <li><b class="pg-n">06</b><span class="pg-step">STEP 06 / 06</span><h3>Delivery</h3><p>Same-day courier in Dubai, 1–2 days across UAE. Pressed, poly-bagged &amp; size-sorted.</p></li>
-          </ol>
+        <div class="sec-head">
+          <p class="lab">HOW IT WORKS — 6 STEPS · AVG. SAMPLING 5 DAYS</p>
+          <h2 class="h2">FROM IDEA TO <em>DELIVERY.</em></h2>
+        </div>
+        <ol class="proc" id="procList">
+          <li><b>01</b><h3>Connect with us</h3><p>WhatsApp, call or send the form. Share qty, sizes &amp; deadline — we reply within 1 business hour.</p></li>
+          <li><b>02</b><h3>Design &amp; selection</h3><p>Pick blanks from the rail or send a tech pack. Free mockups with your logo placed to scale.</p></li>
+          <li><b>03</b><h3>Quote &amp; payments</h3><p>Transparent per-unit pricing with print, label &amp; delivery broken out. 50% to start bulk.</p></li>
+          <li><b>04</b><h3>Production</h3><p>Cut, stitch &amp; print under one roof. Live photo updates from the floor at every milestone.</p></li>
+          <li><b>05</b><h3>Quality control</h3><p>4-point inspection: print adhesion, stitch density, measurements &amp; finishing before packing.</p></li>
+          <li><b>06</b><h3>Delivery</h3><p>Same-day courier in Dubai, 1–2 days across the UAE. Pressed, poly-bagged &amp; size-sorted.</p></li>
+        </ol>
+      </section>
+
+      <!-- ══════════ NUMBERS ══════════ -->
+      <section class="sec num-sec">
+        <div class="nums">
+          <div><b data-count="9" data-suffix="+">0</b><span>YEARS MFG</span></div>
+          <div><b data-count="2.4" data-suffix="M">0</b><span>PCS DELIVERED</span></div>
+          <div><b data-count="15" data-suffix="+">0</b><span>MACHINES</span></div>
+          <div><b data-count="99.2" data-suffix="%">0</b><span>QC PASS</span></div>
         </div>
       </section>
 
-      <!-- ══════════ 07 · studio / branding ══════════ -->
-      <section class="sec studio" id="studio">
-        <div class="shell studio-in">
-          <div class="studio-copy">
-            <p class="sec-eyebrow">[07] &nbsp;— MAKE IT YOURS</p>
-            <h2 class="sec-h2">LABELING THAT <em>DEFINES YOUR BRAND.</em></h2>
-            <p class="lede">
-              Woven neck labels, printed size chips, hang tags, poly-bags &amp; outer cartons.
-              A blank becomes a brand at the labeling table.
-            </p>
-            <ul class="chips">
-              <li>WOVEN LABELS</li><li>HANG TAGS</li><li>SIZE CHIPS</li><li>POLY BAGS</li><li>CARTONS</li>
-            </ul>
-            <div class="hero-cta">
-              <a class="btn btn-solid" href="#quote">ADD LABELS TO QUOTE</a>
-              <a class="btn btn-line" href="#rails">SEE BLANKS</a>
-            </div>
-            <p class="mono-note">AA · MONO · 2026</p>
-          </div>
-          <ul class="studio-grid">
-            <li><img src="https://allegiantattire.store/images/p-polo.webp" alt="Woven neck labels" /><b>Woven neck labels</b><span>Damask · 50 DEN</span></li>
-            <li><img src="https://allegiantattire.store/images/p-tee.webp" alt="Hang tags with string" /><b>Hang tags + string</b><span>400 GSM · Foil opt.</span></li>
-            <li><img src="https://allegiantattire.store/images/p-cap.webp" alt="Cap labeling" /><b>Cap labeling</b><span>Inner tape print</span></li>
-            <li><img src="https://allegiantattire.store/images/p-hoodie.webp" alt="Size and care chips" /><b>Size &amp; care chips</b><span>Side-seam print</span></li>
+      <!-- ══════════ UNIFORMS ══════════ -->
+      <section class="sec" id="uniforms">
+        <div class="sec-head">
+          <p class="lab">UNIFORM DIVISION — PROGRAM 08</p>
+          <h2 class="h2">ONE VENDOR. <em>EVERY DEPARTMENT.</em></h2>
+        </div>
+        <ul class="uni" id="uniList"></ul>
+      </section>
+
+      <!-- ══════════ CLIENTS ══════════ -->
+      <section class="sec" id="reviews">
+        <div class="sec-head">
+          <p class="lab">COMMUNITY TALKS — CLIENTS · DUBAI / SHARJAH / AJMAN</p>
+          <h2 class="h2">WHAT CLIENTS <em>SAY.</em></h2>
+        </div>
+        <ul class="quotes">
+          <li>
+            <p>“Needed 300 tees in 48 hours for a launch. Allegiant printed overnight and delivered pressed and sorted. Unreal turnaround.”</p>
+            <span>MARWAN ALLOOKI — EVENTS, DUBAI</span>
+          </li>
+          <li>
+            <p>“We run 12 hotel properties. The uniform program is the only one that has never missed a season start.”</p>
+            <span>HOUSEKEEPING GROUP — HOSPITALITY, UAE</span>
+          </li>
+          <li>
+            <p>“School shirts survive the whole term — parents stopped complaining. Reordered three years running.”</p>
+            <span>SCHOOL OPERATIONS — EDUCATION, SHARJAH</span>
+          </li>
+        </ul>
+        <div class="nums nums-tight">
+          <div><b>4.9</b><span>GOOGLE RATING</span></div>
+          <div><b>1.9K</b><span>REVIEWS</span></div>
+          <div><b>98%</b><span>RE-ORDER</span></div>
+          <div><b>24H</b><span>RESPONSE</span></div>
+        </div>
+      </section>
+
+      <!-- ══════════ FAQ ══════════ -->
+      <section class="sec" id="faq">
+        <div class="sec-head">
+          <p class="lab">FAQ — STRAIGHT ANSWERS</p>
+          <h2 class="h2">BEFORE YOU <em>ORDER.</em></h2>
+        </div>
+        <div class="faq">
+          <details open>
+            <summary>What is your minimum order quantity?</summary>
+            <p>DTF &amp; print services start at 1 pc. Custom blanks start at 10–12 pcs per style; cut-and-sew factory runs start at 100 pcs per colour.</p>
+          </details>
+          <details>
+            <summary>How fast can you deliver in Dubai?</summary>
+            <p>Same-day DTF pressing on ready blanks, 5–7 days for sampling, 2–3 weeks for bulk. Dubai courier is same-day, 1–2 days across the UAE.</p>
+          </details>
+          <details>
+            <summary>Do you provide samples before bulk?</summary>
+            <p>Yes — a pre-production sample with your artwork and labels is approved before the bulk run starts, usually within 5 days.</p>
+          </details>
+          <details>
+            <summary>Which print method should I choose?</summary>
+            <p>DTF for full-colour, urgent or low quantities; screen print for large single-colour runs; sublimation for all-over activewear; embroidery for polos, caps and uniforms.</p>
+          </details>
+          <details>
+            <summary>Can you handle labelling &amp; packaging?</summary>
+            <p>Woven neck labels, size chips, hang tags, poly-bags and outer cartons — printed, sewn and packed in-house.</p>
+          </details>
+        </div>
+      </section>
+
+      <!-- ══════════ QUOTE ══════════ -->
+      <section class="sec quote" id="quote">
+        <div class="quote-copy">
+          <p class="lab">CONTACT — GET IN TOUCH</p>
+          <h2 class="h2">REQUEST A <em>CALLBACK.</em></h2>
+          <p class="lede">Tell us what you need printed or stitched and we'll reply within one business hour.</p>
+          <ul class="quote-contacts">
+            <li><a href="tel:+971582045242">+971 58 204 5242</a></li>
+            <li><a href="mailto:info@allegiantattire.store">INFO@ALLEGIANTATTIRE.STORE</a></li>
+            <li><a href="https://maps.google.com/?q=New+Industrial+Area+2,+Ajman,+UAE" target="_blank" rel="noopener">NEW INDUSTRIAL AREA 2, AJMAN, UAE</a></li>
           </ul>
         </div>
-      </section>
-
-      <!-- ══════════ 08 · uniforms division ══════════ -->
-      <section class="sec uni-sec" id="uniforms">
-        <div class="shell uni-in">
-          <figure class="uni-fig">
-            <img src="https://allegiantattire.store/images/p-uniform.webp" alt="Uniform rail" />
-            <figcaption>PROGRAM 08 — UNIFORMS</figcaption>
-            <p class="uni-claim">ONE VENDOR.<br />EVERY DEPARTMENT.</p>
-            <a class="btn btn-solid btn-sm" href="#quote">UNIFORM QUOTE</a>
-          </figure>
-          <ul class="uni-list" id="uniList"></ul>
-        </div>
-      </section>
-
-      <!-- ══════════ 09 · reviews ══════════ -->
-      <section class="sec rev-sec" id="reviews">
-        <div class="shell">
-          <header class="sec-head">
-            <div>
-              <p class="sec-eyebrow">[09] &nbsp;COMMUNITY TALKS — CLIENT FEEDBACK</p>
-              <h2 class="sec-h2">WHAT CLIENTS <em>SAY.</em></h2>
-            </div>
-            <p class="sec-note">SERVING UAE BRANDS</p>
-          </header>
-          <div class="rev-grid">
-            <blockquote class="rev-card">
-              <p>“Needed 300 tees in 48 hours for a launch. Allegiant printed overnight and delivered pressed and sorted. Unreal turnaround.”</p>
-              <footer><b>MA</b><span><b>Marwan Allooki</b><i>EVENTS — DUBAI</i></span></footer>
-            </blockquote>
-            <blockquote class="rev-card">
-              <p>“We run 12 hotel properties. The uniform program is the only one that has never missed a season start.”</p>
-              <footer><b>HK</b><span><b>Housekeeping Group</b><i>HOSPITALITY — UAE</i></span></footer>
-            </blockquote>
-            <blockquote class="rev-card">
-              <p>“School shirts survive the whole term — parents stopped complaining. Reordered three years running.”</p>
-              <footer><b>SCH</b><span><b>School Operations</b><i>EDUCATION — SHARJAH</i></span></footer>
-            </blockquote>
-          </div>
-          <div class="rev-stats">
-            <div><b>4.9</b><span>GOOGLE RATING</span></div>
-            <div><b>1.9K</b><span>REVIEWS</span></div>
-            <div><b>98%</b><span>RE-ORDER</span></div>
-            <div><b>24H</b><span>RESPONSE</span></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ══════════ 10 · faq ══════════ -->
-      <section class="sec" id="faq">
-        <div class="shell faq-in">
-          <header class="sec-head">
-            <div>
-              <p class="sec-eyebrow">[10] &nbsp;FAQ — STRAIGHT ANSWERS</p>
-              <h2 class="sec-h2">BEFORE YOU <em>ORDER.</em></h2>
-            </div>
-          </header>
-          <div class="faq-list">
-            <details open>
-              <summary>What is your minimum order quantity?</summary>
-              <p>DTF &amp; print services start at 1 pc. Custom blanks start at 10–12 pcs per style; cut-and-sew factory runs start at 100 pcs per color.</p>
-            </details>
-            <details>
-              <summary>How fast can you deliver in Dubai?</summary>
-              <p>Same-day DTF pressing on ready blanks, 5–7 days for sampling, 2–3 weeks for bulk production. Dubai courier is same-day, 1–2 days across the UAE.</p>
-            </details>
-            <details>
-              <summary>Do you provide samples before bulk?</summary>
-              <p>Yes. A pre-production sample with your artwork and labels is approved before the bulk run starts — usually within 5 days.</p>
-            </details>
-            <details>
-              <summary>Which print method should I choose?</summary>
-              <p>DTF for full-colour, urgent or low quantities; screen print for large single-colour runs; sublimation for all-over activewear; embroidery for polos, caps and uniforms.</p>
-            </details>
-            <details>
-              <summary>Can you handle labeling &amp; packaging?</summary>
-              <p>Woven neck labels, size chips, hang tags, poly-bags and outer cartons — printed, sewn and packed in-house.</p>
-            </details>
-          </div>
-        </div>
-      </section>
-
-      <!-- ══════════ 11 · quote ══════════ -->
-      <section class="sec cta-sec" id="quote">
-        <div class="shell cta-in">
-          <div class="cta-copy">
-            <p class="sec-eyebrow">[11] &nbsp;CONTACT — GET IN TOUCH</p>
-            <h2 class="sec-h2">REQUEST A <em>CALLBACK.</em></h2>
-            <p class="lede">Tell us what you need printed or stitched and we'll reply within one business hour.</p>
-            <ul class="cta-contacts">
-              <li><a href="tel:+971582045242">+971 58 204 5242</a></li>
-              <li><a href="mailto:info@allegiantattire.store">INFO@ALLEGIANTATTIRE.STORE</a></li>
-              <li><a href="https://maps.google.com/?q=New+Industrial+Area+2,+Ajman,+UAE" target="_blank" rel="noopener">NEW INDUSTRIAL AREA 2, AJMAN, UAE</a></li>
-            </ul>
-            <a class="wa-btn wa-btn-lg" href="https://wa.me/971582045242" target="_blank" rel="noopener">CHAT ON WHATSAPP — REPLIES &lt; 1 HOUR</a>
-          </div>
-
-          <form class="form" id="quoteForm" novalidate>
-            <div class="f-row">
-              <label class="f-field"><span>NAME</span><input name="name" type="text" autocomplete="name" placeholder="Your name" required /></label>
-              <label class="f-field"><span>PHONE / WHATSAPP</span><input name="phone" type="tel" autocomplete="tel" placeholder="+971 …" required /></label>
-            </div>
-            <label class="f-field"><span>WHAT DO YOU NEED?</span>
-              <select name="need">
-                <option>Bulk uniforms</option>
-                <option>Custom T-shirts</option>
-                <option>Hoodies / merch</option>
-                <option>Caps &amp; embroidery</option>
-                <option>Activewear</option>
-                <option>Kids line</option>
-                <option>Other</option>
-              </select>
-            </label>
-            <label class="f-field"><span>QUANTITY / DEADLINE</span><input name="qty" type="text" placeholder="e.g. 250 pcs by 20 Oct" /></label>
-            <label class="f-field"><span>NOTES</span><textarea name="notes" rows="3" placeholder="Sizes, colours, artwork link…"></textarea></label>
-            <button class="btn btn-solid btn-full" type="submit">SEND REQUEST</button>
-            <p class="f-note" id="quoteMsg" role="status"></p>
-            <p class="mono-note">OR SEND ARTWORK DIRECTLY ON WHATSAPP — FREE DIGITAL PROOF BEFORE PRINT.</p>
-          </form>
-        </div>
+        <form class="form" id="quoteForm" novalidate>
+          <label class="f"><span>NAME</span><input name="name" type="text" autocomplete="name" required /></label>
+          <label class="f"><span>PHONE / WHATSAPP</span><input name="phone" type="tel" autocomplete="tel" required /></label>
+          <label class="f"><span>WHAT DO YOU NEED?</span>
+            <select name="need">
+              <option>Bulk uniforms</option>
+              <option>Custom T-shirts</option>
+              <option>Hoodies / merch</option>
+              <option>Caps &amp; embroidery</option>
+              <option>Activewear</option>
+              <option>Kidswear</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label class="f"><span>QUANTITY / DEADLINE</span><input name="qty" type="text" placeholder="e.g. 250 pcs by 20 Oct" /></label>
+          <label class="f"><span>NOTES</span><textarea name="notes" rows="3" placeholder="Sizes, colours, artwork link…"></textarea></label>
+          <button class="pill pill-ink pill-wide" type="submit">SEND REQUEST ↗</button>
+          <p class="f-note" id="quoteMsg" role="status"></p>
+        </form>
       </section>
     </main>
 
     <!-- ══════════ footer ══════════ -->
-    <footer class="ftr">
-      <div class="shell ftr-in">
-        <div class="ftr-brand">
-          <img src="/logo.png?v=3" alt="Allegiant Attire" width="72" height="72" />
-          <p><b>ALLEGIANT ATTIRE</b><br />Custom clothing manufacturer — Ajman &amp; Dubai, UAE.<br />T-shirts · Polos · Hoodies · Uniforms · Caps · DTF · Embroidery.</p>
+    <footer class="foot">
+      <div class="foot-in">
+        <div class="foot-brand">
+          <img src="/logo.png?v=3" alt="Allegiant Attire" />
+          <p><b>ALLEGIANT ATTIRE</b><br />Custom clothing manufacturer — Ajman &amp; Dubai, UAE.<br />Tees · Polos · Hoodies · Activewear · Caps · Uniforms</p>
         </div>
-        <nav class="ftr-col" aria-label="Categories">
-          <b>CATEGORIES</b>
+        <nav class="foot-col" aria-label="Shop">
+          <b>SHOP</b>
           <a href="#rails" data-jump="t-shirts">T-Shirts</a>
           <a href="#rails" data-jump="polo-t-shirts">Polo T-Shirts</a>
           <a href="#rails" data-jump="hoodies-sweats">Hoodies &amp; Sweats</a>
@@ -458,7 +254,7 @@
           <a href="#rails" data-jump="activewear">Activewear</a>
           <a href="#rails" data-jump="caps">Caps</a>
         </nav>
-        <nav class="ftr-col" aria-label="Uniforms">
+        <nav class="foot-col" aria-label="Uniforms">
           <b>UNIFORMS</b>
           <a href="#rails" data-jump="uniforms">Staff Uniforms</a>
           <a href="#rails" data-jump="school-uniforms">School Uniforms</a>
@@ -466,42 +262,78 @@
           <a href="#rails" data-jump="construction-uniforms">Construction</a>
           <a href="#services">Print Services</a>
         </nav>
-        <div class="ftr-col">
-          <b>COMPANY</b>
+        <div class="foot-col">
+          <b>HOUSE</b>
           <a href="tel:+971582045242">+971 58 204 5242</a>
           <a href="mailto:info@allegiantattire.store">info@allegiantattire.store</a>
           <a href="https://maps.google.com/?q=New+Industrial+Area+2,+Ajman,+UAE" target="_blank" rel="noopener">New Industrial Area 2, Ajman</a>
-          <span class="ftr-hours">MON–SAT · 9AM–7PM</span>
+          <span class="foot-hours">MON–SAT · 9AM–7PM</span>
         </div>
       </div>
-      <div class="shell ftr-bar">
-        <span>© <span id="yr">2026</span> ALLEGIANT ATTIRE — ALL RIGHTS RESERVED</span>
-        <span>WHOLESALE PRICE LIST — IN YOUR INBOX</span>
-        <a href="https://wa.me/971582045242" target="_blank" rel="noopener">WHATSAPP</a>
+      <div class="foot-bar">
+        <span>© <span id="yr">2026</span> ALLEGIANT ATTIRE</span>
+        <span>EST. AJMAN — UAE</span>
+        <span>WHOLESALE PRICE LIST ON REQUEST</span>
       </div>
     </footer>
+
+    <!-- ══════════ product overlay ══════════ -->
+    <div class="pov" id="pov" role="dialog" aria-modal="true" aria-label="Product detail" aria-hidden="true">
+      <div class="pov-scrim" id="povScrim"></div>
+      <div class="pov-card">
+        <div class="pov-top">
+          <span class="lab" id="povSku">SKU</span>
+          <button class="pov-close" id="povClose" type="button">CLOSE ✕</button>
+        </div>
+        <div class="pov-media">
+          <div class="pov-hang" id="povHang"></div>
+          <span class="pov-view-tag" id="povViewTag">FRONT</span>
+        </div>
+        <div class="pov-info">
+          <h3 class="pov-name" id="povName">—</h3>
+          <p class="lab" id="povMeta">—</p>
+          <div class="pov-views">
+            <button type="button" class="view-btn is-on" data-view="front">FRONT</button>
+            <button type="button" class="view-btn" data-view="back">BACK</button>
+          </div>
+          <p class="pov-note" id="povNote">Sizes XS–3XL · fabric and colour cards sent on WhatsApp.</p>
+          <div class="pov-actions">
+            <a class="pill" id="povShop" href="#" target="_blank" rel="noopener">VIEW IN THE SHOP ↗</a>
+            <button class="pill pill-ink" id="povAdd" type="button">ADD TO BAG</button>
+            <a class="pill" id="povWa" href="https://wa.me/971582045242" target="_blank" rel="noopener">WHATSAPP QUOTE</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- ══════════ bag drawer ══════════ -->
     <aside class="drawer" id="bagDrawer" aria-hidden="true" aria-label="Order bag">
       <header class="dr-head">
-        <b>YOUR ORDER BAG</b>
+        <span class="lab">YOUR ORDER BAG</span>
         <button type="button" class="dr-x" id="bagClose" aria-label="Close bag">✕</button>
       </header>
       <div class="dr-body" id="bagBody"></div>
       <footer class="dr-foot">
-        <p class="dr-total"><span>ESTIMATE</span><b id="bagTotal">AED 0</b></p>
-        <p class="mono-note">MOQ REMINDERS ARE CHECKED ON WHATSAPP BEFORE PRODUCTION.</p>
-        <a class="wa-btn wa-btn-lg" id="bagOrder" href="https://wa.me/971582045242" target="_blank" rel="noopener">SEND ORDER ON WHATSAPP</a>
-        <button type="button" class="btn btn-line btn-full" id="bagClear">CLEAR BAG</button>
+        <p class="dr-total"><span class="lab">ESTIMATE</span><b id="bagTotal">AED 0</b></p>
+        <p class="dr-note">MOQ is confirmed on WhatsApp before production. Delivery quoted per emirate.</p>
+        <a class="pill pill-wa" id="bagOrder" href="https://wa.me/971582045242" target="_blank" rel="noopener">SEND ORDER ON WHATSAPP ↗</a>
+        <button type="button" class="pill pill-ghost" id="bagClear">CLEAR BAG</button>
       </footer>
     </aside>
 
-    <!-- ══════════ quick view ══════════ -->
-    <div class="qv" id="qv" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Product quick view">
-      <div class="qv-card" id="qvCard"></div>
-    </div>
-
-    <div class="toast" id="toast" role="status" aria-live="polite"></div>
     <div class="scrim" id="scrim"></div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <!-- ══════════ marquee tray ══════════ -->
+    <div class="tray">
+      <div class="tray-track" id="trayTrack"></div>
+      <button class="tray-badge" id="toTop" type="button" aria-label="Back to the top">
+        <svg viewBox="0 0 90 90" aria-hidden="true">
+          <defs><path id="circ" d="M45,45 m-33,0 a33,33 0 1,1 66,0 a33,33 0 1,1 -66,0" /></defs>
+          <text><textPath href="#circ" startOffset="0">ON THE RAIL · ALLEGIANT ATTIRE · AJMAN UAE · </textPath></text>
+        </svg>
+        <span aria-hidden="true">↑</span>
+      </button>
+    </div>
   </body>
 </html>
