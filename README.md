@@ -241,27 +241,44 @@ rail on wooden hangers, drifting past the viewer.
 | `tools/preview-server.mjs` | `node tools/preview-server.mjs 8000` → preview (″/″ opens home-v2) |
 | `tools/rail-check.mjs` | structural + interaction checks (`npm i jsdom` once) |
 | `tools/go-live.sh` | publish it as `index.html` (or `--rollback`) |
-| `tools/grab-video.html` | browser bridge for pulling a remote video into the workspace |
-| `tools/analyze-video.sh` | frame-by-frame study of any reference video |
+| `assets/garments/` | background-free garment cut-outs (side + front, colourways) |
+| `tools/build-garments.py` | raw studio shots → keyed, trimmed, recoloured rail art |
+| `tools/build-art-map.py` | syncs `garments.json` into the `AA_ART` block in `catalog.js` |
+| `tools/grab-video.html` · `tools/analyze-video.sh` | pull / study a reference video |
 
 ### The rail
-Every garment hangs from the chrome rail on a wooden hanger — string, hanger
-and photo are one unit, so they can never drift out of register. Five motions
-are layered:
+Background-free garment cut-outs hang from the chrome rail on wooden hangers —
+string, hanger and artwork are one unit, so they can never drift out of
+register. Every piece rests in **side profile**; the piece under the pointer
+(or keyboard focus, or the one resting mid-rail) cross-fades to the
+**straight-on front view** and its hanger turns from edge-on to face-on.
+Five motions are layered:
 
 1. **drift** — a slow continuous glide at sample-room speed;
 2. **drag** — pointer drag scrubs the rail, velocity is tracked and momentum
    decays on release (a real drag never opens a product);
 3. **depth** — pieces shrink, tip away (`rotateY`) and lose z-order as they
    leave the centre, so the rail reads as receding into the room;
-4. **lift** — hover (or keyboard focus) brings a piece forward, scales it and
-   dims every other piece; the caption below follows it;
+4. **turn** — hover lifts a piece, tips it square to the viewer and swaps the
+   side cut-out for the front one while the rest of the rail steps back;
 5. **explore** — click opens the piece over a blurred rail with FRONT / BACK,
    “view in the shop”, “add to bag” and a pre-filled WhatsApp quote.
 
-The photo sits on its own opaque plate with `mix-blend-mode: multiply`, so the
-white studio background of our `/images/*.webp` shots dissolves into the cream
-wall (a transform on the card would otherwise isolate the blending).
+### The artwork
+`raw/*.png` are studio renders on a magenta backdrop. `tools/build-garments.py`
+keys the backdrop to transparency (with edge dilation, so no fringe survives),
+trims, normalises every piece to one height, and maps the render's shading onto
+each colourway — so one render yields a whole rail of colours:
+
+```bash
+python3 tools/build-garments.py && python3 tools/build-art-map.py
+```
+
+Once older `/images/*.webp` photos are dropped into `raw/` as `<type>-side.png`
+and `<type>-front.png` they key just as cleanly as the renders do.
+
+Categories that do not have cut-outs yet fall back to the keyed catalogue photo
+(its own plate + `mix-blend-mode: multiply` hides the white studio background).
 
 ### The rest of the page
 Minimal MENU / wordmark / SHOP + BAG header, a numbered “THE LINE” category
@@ -278,7 +295,8 @@ accent marquee tray pinned to the bottom of the viewport with the rotating
 The existing single-page app is preserved: the first run copies it to
 `spa.html` (so the Design Lab, admin and product pages stay reachable at
 `/spa.html`) and to `index-spa-backup.html` for rollback. Deploy `home-v2.css`,
-`home-v2.js`, `catalog.js`, `logo.png` and `spa.html` next to `index.html`.
+`home-v2.js`, `catalog.js`, `logo.png`, `assets/garments/` and `spa.html` next to
+`index.html`.
 
 ### Checks
 ```bash

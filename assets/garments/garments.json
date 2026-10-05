@@ -1,0 +1,242 @@
+{
+  "active": {
+    "front": [
+      {
+        "file": "active-front.webp",
+        "w": 450,
+        "h": 760
+      },
+      {
+        "file": "active-front-black.webp",
+        "w": 450,
+        "h": 760
+      },
+      {
+        "file": "active-front-blue.webp",
+        "w": 450,
+        "h": 760
+      },
+      {
+        "file": "active-front-sand.webp",
+        "w": 450,
+        "h": 760
+      }
+    ],
+    "side": [
+      {
+        "file": "active-side.webp",
+        "w": 567,
+        "h": 760
+      },
+      {
+        "file": "active-side-black.webp",
+        "w": 567,
+        "h": 760
+      },
+      {
+        "file": "active-side-blue.webp",
+        "w": 567,
+        "h": 760
+      },
+      {
+        "file": "active-side-sand.webp",
+        "w": 567,
+        "h": 760
+      }
+    ]
+  },
+  "hoodie": {
+    "front": [
+      {
+        "file": "hoodie-front.webp",
+        "w": 575,
+        "h": 760
+      },
+      {
+        "file": "hoodie-front-ecru.webp",
+        "w": 575,
+        "h": 760
+      },
+      {
+        "file": "hoodie-front-forest.webp",
+        "w": 575,
+        "h": 760
+      },
+      {
+        "file": "hoodie-front-oxblood.webp",
+        "w": 575,
+        "h": 760
+      }
+    ],
+    "side": [
+      {
+        "file": "hoodie-side.webp",
+        "w": 401,
+        "h": 760
+      },
+      {
+        "file": "hoodie-side-ecru.webp",
+        "w": 401,
+        "h": 760
+      },
+      {
+        "file": "hoodie-side-forest.webp",
+        "w": 401,
+        "h": 760
+      },
+      {
+        "file": "hoodie-side-oxblood.webp",
+        "w": 401,
+        "h": 760
+      }
+    ]
+  },
+  "polo": {
+    "front": [
+      {
+        "file": "polo-front.webp",
+        "w": 630,
+        "h": 760
+      },
+      {
+        "file": "polo-front-chalk.webp",
+        "w": 630,
+        "h": 760
+      },
+      {
+        "file": "polo-front-ink.webp",
+        "w": 630,
+        "h": 760
+      },
+      {
+        "file": "polo-front-red.webp",
+        "w": 630,
+        "h": 760
+      },
+      {
+        "file": "polo-front-steel.webp",
+        "w": 630,
+        "h": 760
+      }
+    ],
+    "side": [
+      {
+        "file": "polo-side.webp",
+        "w": 420,
+        "h": 760
+      },
+      {
+        "file": "polo-side-chalk.webp",
+        "w": 420,
+        "h": 760
+      },
+      {
+        "file": "polo-side-ink.webp",
+        "w": 420,
+        "h": 760
+      },
+      {
+        "file": "polo-side-red.webp",
+        "w": 420,
+        "h": 760
+      },
+      {
+        "file": "polo-side-steel.webp",
+        "w": 420,
+        "h": 760
+      }
+    ]
+  },
+  "tank": {
+    "front": [
+      {
+        "file": "tank-front.webp",
+        "w": 478,
+        "h": 760
+      },
+      {
+        "file": "tank-front-chalk.webp",
+        "w": 478,
+        "h": 760
+      },
+      {
+        "file": "tank-front-2.webp",
+        "w": 478,
+        "h": 760
+      }
+    ],
+    "side": [
+      {
+        "file": "tank-side.webp",
+        "w": 412,
+        "h": 760
+      },
+      {
+        "file": "tank-side-chalk.webp",
+        "w": 412,
+        "h": 760
+      },
+      {
+        "file": "tank-side-2.webp",
+        "w": 412,
+        "h": 760
+      }
+    ]
+  },
+  "tee": {
+    "front": [
+      {
+        "file": "tee-front.webp",
+        "w": 621,
+        "h": 760
+      },
+      {
+        "file": "tee-front-1.webp",
+        "w": 621,
+        "h": 760
+      },
+      {
+        "file": "tee-front-black.webp",
+        "w": 621,
+        "h": 760
+      },
+      {
+        "file": "tee-front-sand.webp",
+        "w": 621,
+        "h": 760
+      },
+      {
+        "file": "tee-front-moss.webp",
+        "w": 621,
+        "h": 760
+      }
+    ],
+    "side": [
+      {
+        "file": "tee-side.webp",
+        "w": 567,
+        "h": 760
+      },
+      {
+        "file": "tee-side-1.webp",
+        "w": 567,
+        "h": 760
+      },
+      {
+        "file": "tee-side-black.webp",
+        "w": 567,
+        "h": 760
+      },
+      {
+        "file": "tee-side-sand.webp",
+        "w": 567,
+        "h": 760
+      },
+      {
+        "file": "tee-side-moss.webp",
+        "w": 567,
+        "h": 760
+      }
+    ]
+  }
+}

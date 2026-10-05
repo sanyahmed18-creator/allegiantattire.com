@@ -31,8 +31,19 @@ const dom = new JSDOM(readFileSync(join(ROOT, "home-v2.html"), "utf8"), {
     Object.defineProperty(w.HTMLElement.prototype, "clientWidth", { get() { return 1400; }, configurable: true });
     w.HTMLElement.prototype.getBoundingClientRect = function () {
       const hang = this.classList && this.classList.contains("hang");
+      const art = this.classList && this.classList.contains("hang-media");
+      if (art) return { width: 120, height: 220, top: 0, left: 0, right: 120, bottom: 220, x: 0, y: 0 };
       return { width: hang ? 176 : 1400, height: hang ? 300 : 400, top: 200, left: 40, right: 216, bottom: 500, x: 0, y: 0 };
     };
+    // give the harness a deterministic rail layout (uniform pieces, 170px pitch)
+    Object.defineProperty(w.HTMLElement.prototype, "offsetLeft", {
+      get() { const i = this.dataset && this.dataset.i; return i == null ? 0 : Number(i) * 170 + 85; },
+      configurable: true,
+    });
+    Object.defineProperty(w.HTMLElement.prototype, "offsetWidth", {
+      get() { return (this.classList && this.classList.contains("hang")) ? 170 : 1400; },
+      configurable: true,
+    });
     w.scrollTo = () => {}; w.HTMLElement.prototype.scrollIntoView = () => {};
     w.requestAnimationFrame = cb => setTimeout(() => cb(performance.now()), 8);
   },
@@ -49,10 +60,14 @@ await new Promise(r => setTimeout(r, 400));
 
 console.log("\nRAIL");
 const hangs = $$("#railTrack .hang");
-ok(hangs.length >= 84, "all hanging SKUs rendered (85)", hangs.length);
-ok($$("#railTrack .hang-plate").length === hangs.length, "every piece has its blend plate");
+const art = $$("#railTrack .hang.has-art");
+const photo = $$("#railTrack .hang:not(.has-art)");
+ok(hangs.length === 170, "two seamless copies of all 85 pieces", hangs.length);
+ok(art.length === 100, "side/front cut-outs on the five ready categories", art.length);
+ok(photo.length === 70, "other categories fall back to the keyed photo", photo.length);
+ok($$("#railTrack .art-side").length === art.length, "every cut-out piece has a side view");
+ok($$("#railTrack .art-front").length === art.length, "every cut-out piece has a front view (revealed on hover)");
 ok($$("#railTrack .hang-wood").length === hangs.length, "every piece has a wooden hanger");
-ok($$("#railTrack .hang-img").length === hangs.length, "every piece has its photo");
 ok($$("#railTrack .hang-btn").length === hangs.length, "every piece has a hit target");
 ok($("#railName").textContent.length > 1 && $("#railMeta").textContent.includes("MOQ"), "caption is live", $("#railMeta").textContent);
 ok($$("#lineList li").length === (W.AA_CATEGORIES || []).length, "the line lists every category");
@@ -68,7 +83,16 @@ console.log("\nINTERACTION");
 hang0.dispatchEvent(new W.MouseEvent("pointerover", { bubbles: true }));
 ok(hang0.classList.contains("is-hot"), "hover lifts the piece");
 ok($("#railViewport").classList.contains("is-dimmed"), "neighbours dim while one is lifted");
-$("#povClose") && null;
+ok(!hang0.style.transform.includes("rotateY(-0"), "the hovered piece stops tipping away");
+
+// the side → front swap is CSS driven: assert both layers exist and that the
+// front layer is the one revealed by the .is-hot class
+const frontSrc = hang0.querySelector(".art-front").getAttribute("src");
+const sideSrc = hang0.querySelector(".art-side").getAttribute("src");
+ok(/^\/assets\/garments\//.test(frontSrc) && /^\/assets\/garments\//.test(sideSrc),
+   "cut-out artwork is served from /assets/garments", { frontSrc, sideSrc });
+ok(frontSrc !== sideSrc, "side and front are different artworks");
+ok(hang0.querySelector(".art-side").getAttribute("alt").includes("profile"), "side view is labelled for screen readers");
 
 const target = hangs[6];
 target.dispatchEvent(new W.MouseEvent("pointerover", { bubbles: true }));
@@ -83,6 +107,8 @@ btn.dispatchEvent(up);
 ok($("#pov").classList.contains("is-open"), "tap opens the explore overlay");
 ok($("#povName").textContent === (W.AA_CATALOG.find(p => p.id === target.dataset.id) || {}).name, "overlay shows the tapped piece", $("#povName").textContent);
 ok($("#povSku").textContent.startsWith("SKU"), "overlay shows an SKU line");
+ok(/^\/assets\/garments\//.test($("#povHang img").getAttribute("src")), "overlay hangs the front cut-out", $("#povHang img").getAttribute("src"));
+ok(!!$("#povHang .hang-wood"), "overlay piece hangs from a hanger");
 
 $('#pov .view-btn[data-view="back"]').dispatchEvent(new W.MouseEvent("click", { bubbles: true }));
 ok(!!$(".pov-backnote"), "BACK view offers a back-mockup route");

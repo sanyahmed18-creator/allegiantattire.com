@@ -11,6 +11,7 @@
 #
 # Files that must be deployed next to index.html:
 #   home-v2.css · home-v2.js · catalog.js · logo.png · spa.html
+#   assets/garments/            (background-free rail artwork)
 # ---------------------------------------------------------------------------
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -34,4 +35,4 @@ fi
 cp home-v2.html index.html
 echo "✔ New home page published as index.html"
 echo "  rollback: ./tools/go-live.sh --rollback"
-echo "  deploy alongside it: home-v2.css home-v2.js catalog.js logo.png spa.html"
+echo "  deploy alongside it: home-v2.css home-v2.js catalog.js logo.png spa.html assets/garments/"

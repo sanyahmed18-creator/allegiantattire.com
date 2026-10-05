@@ -112,7 +112,8 @@ em { font-style: normal; }
   .top-right { gap: 10px; }
   .top-shop, .top-bag, .top-menu { font-size: 9px; letter-spacing: 0.14em; }
   /* garments sized relative to the viewport so ~3 pieces share the fold */
-  .rail-viewport { --hw: clamp(104px, 30vw, 150px); --hgap: clamp(9px, 2.6vw, 18px); }
+  .rail-viewport { --hh: clamp(170px, 46vw, 250px); --hw: clamp(104px, 30vw, 150px); --hgap: clamp(9px, 2.4vw, 16px); }
+  .hang-wood { width: 54px; margin-left: -27px; top: 20px; }
   .rail-labels { gap: 10px; }
   .rail-labels .lab:last-child, .rail-sep { display: none; }
   .rail-caption { margin-top: 4px; }
@@ -160,11 +161,12 @@ em { font-style: normal; }
 .rail-sep { width: 1px; height: 12px; background: var(--hair); }
 
 .rail-viewport {
-  --railY: clamp(46px, 6.4vh, 88px);
-  --hw: clamp(126px, 13vw, 212px);      /* garment photo width */
-  --hgap: clamp(12px, 1.2vw, 22px);     /* clear space either side */
+  --railY: clamp(44px, 6vh, 80px);
+  --hh: clamp(190px, 25vh, 330px);      /* garment length (all cut-outs share it) */
+  --hw: clamp(126px, 13vw, 212px);      /* fallback photo width */
+  --hgap: clamp(10px, 1.1vw, 20px);     /* clear space either side */
   position: relative;
-  padding: var(--railY) 0 clamp(40px, 7vh, 96px);
+  padding: var(--railY) 0 clamp(30px, 4.5vh, 64px);
   cursor: grab;
   overflow: hidden;
   touch-action: pan-y;
@@ -192,52 +194,90 @@ em { font-style: normal; }
 .rail-bar::after { right: -3px; }
 
 .rail-track {
-  display: flex; align-items: flex-start; gap: 0;
-  width: max-content; padding: 0 var(--pad);
+  position: relative;
+  display: flex; align-items: flex-start;
+  width: max-content;
   will-change: transform;
 }
-.rail-viewport.is-reduced .rail-track { padding: 0 var(--pad); }
+.rail-copy { display: flex; align-items: flex-start; }
+.rail-copy:first-child { padding-left: var(--pad); }
+.rail-copy:last-child { padding-right: var(--pad); }
 
-/* ── one hanging piece ───────────────────────────────────────────────────── */
+/* ── one piece on the rail ───────────────────────────────────────────────── */
 .hang {
   position: relative; flex: 0 0 auto;
-  width: calc(var(--hw) + var(--hgap) * 2);
   padding: 0 var(--hgap);
   transform-origin: 50% 0; backface-visibility: hidden;
   will-change: transform;
+  transition: opacity 0.3s var(--ease);
 }
-.hang-media { position: relative; margin-top: 46px; z-index: 1; }
 .hang-string {
-  position: absolute; left: 50%; top: -3px; width: 2px; height: 33px; margin-left: -1px; z-index: 3;
-  background: linear-gradient(180deg, rgba(23, 20, 16, 0.42), rgba(23, 20, 16, 0.22));
-  border-radius: 1px;
+  position: absolute; left: 50%; top: -4px; width: 2px; height: 32px; margin-left: -1px;
+  background: linear-gradient(180deg, rgba(23, 20, 16, 0.45), rgba(23, 20, 16, 0.22));
+  border-radius: 1px; z-index: 3;
 }
-.hang-wood { position: absolute; left: 50%; top: 26px; width: 78px; margin-left: -39px; z-index: 3; }
-.hang-plate {
-  /* the piece's own backdrop: the photo multiplies against this, so a white
-     studio background disappears into the cream wall (a transform on .hang
-     isolates blending, so the page behind can't be used as the backdrop). */
+.hang-wood {
+  position: absolute; left: 50%; top: 24px; width: 68px; margin-left: -34px; z-index: 3;
+  transform-origin: 50% 30%;
+  transition: transform 0.45s var(--ease), opacity 0.3s var(--ease);
+}
+
+/* the artwork box: height is fixed (a common rail length for every piece),
+   width follows each garment's own aspect ratio */
+.hang-media {
+  position: relative; margin-top: 38px;
+  height: var(--hh);
+  width: calc(var(--hh) * var(--ar, 0.6));
+  transition: width 0.45s var(--ease);
+}
+.hang-media img.art {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  object-fit: contain; -webkit-user-drag: none;
+  transition: opacity 0.34s var(--ease), transform 0.5s var(--ease);
+}
+.art-front { opacity: 0; transform: scale(0.97); }
+/* hovered / touched piece: side profile swaps to the straight-on front view
+   and the hanger turns with it (edge-on when side, face-on when front) */
+.hang.is-hot .art-side { opacity: 0; transform: scale(1.03); }
+.hang.is-hot .art-front { opacity: 1; transform: none; }
+.hang.is-hot .hang-wood { transform: scaleX(1); }
+.hang .hang-wood { transform: scaleX(0.4); }
+
+/* photograph fallback (categories without cut-outs yet) */
+.hang-media-photo { width: var(--hw); }
+
+/* per garment type: a cap does not hang to the floor like a coat */
+.hang[data-type="cap"] { --hh: calc(var(--hh) * 0.52); }
+.hang[data-type="cap"] .hang-media { margin-top: 34px; }
+.hang-media-photo .hang-plate {
   position: absolute; inset: -4px -6px -30px -6px; background: var(--bg); z-index: 0;
 }
-.hang-img {
-  position: relative; z-index: 1;
-  display: block; width: 100%; height: auto;
-  mix-blend-mode: multiply;
-  transition: filter 0.45s var(--ease);
+.hang-media-photo .hang-img {
+  position: relative; z-index: 1; display: block; width: 100%; height: auto;
+  margin-top: 0; mix-blend-mode: multiply;
 }
+
 .hang-btn {
   position: absolute; inset: 0; z-index: 5; border: 0; background: none; cursor: pointer; padding: 0;
 }
 .hang-label {
-  position: absolute; left: 50%; bottom: -2px; transform: translateX(-50%);
-  font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.16em; color: var(--mute);
+  position: absolute; left: 50%; bottom: -16px; transform: translateX(-50%);
+  font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.14em; color: var(--mute);
   opacity: 0; transition: opacity 0.3s var(--ease); white-space: nowrap; z-index: 6;
   pointer-events: none;
 }
 .hang.is-hot .hang-label { opacity: 1; }
-.hang.is-hot .hang-img { filter: saturate(1.04) contrast(1.02); }
-.rail-viewport.is-dimmed .hang:not(.is-hot) .hang-img { filter: blur(1.6px) saturate(0.85); opacity: 0.5; }
-.rail-viewport.is-dimmed .hang:not(.is-hot) { transition: opacity 0.4s var(--ease), filter 0.4s var(--ease); }
+.hang-view {
+  position: absolute; left: 50%; top: 18px; transform: translateX(-50%);
+  font-family: var(--mono); font-size: 8px; letter-spacing: 0.2em; color: var(--mute-2);
+  opacity: 0; transition: opacity 0.3s var(--ease); z-index: 6; pointer-events: none;
+  white-space: nowrap;
+}
+.hang.is-hot .hang-view { opacity: 1; }
+
+/* every other piece steps back while one is being read */
+.rail-viewport.is-dimmed .hang:not(.is-hot) { opacity: 0.55; }
+.rail-viewport.is-dimmed .hang:not(.is-hot) img { filter: blur(1.4px) saturate(0.9); }
 
 .rail-cue {
   position: absolute; right: var(--pad); top: calc(var(--railY) + 14px); z-index: 4;
@@ -384,10 +424,12 @@ em { font-style: normal; }
 @media (max-width: 820px) { .pov-media { border-right: 0; border-bottom: 1px solid var(--hair-2); } }
 .pov-hang { display: grid; justify-items: center; }
 .pov-hang { position: relative; }
+.pov-hang .hang-media { --hh: clamp(240px, 34vh, 400px); margin: 0 auto; }
 .pov-hang .hang-string { position: relative; left: auto; margin: 0 auto; height: 30px; width: 2px; }
-.pov-hang .hang-wood { position: relative; left: auto; margin: -6px auto 0; width: 104px; display: block; }
-.pov-hang .hang-media { margin-top: -6px; }
+.pov-hang .hang-wood { position: relative; left: auto; margin: -6px auto 0; width: 104px; display: block; transform: none; }
+.pov-hang .hang-media { margin-top: -2px; }
 .pov-hang .hang-plate { inset: -2px -6px -18px -6px; }
+.pov-hang .art-front { opacity: 1; transform: none; }
 .pov-hang img { width: min(340px, 82%); margin: 0 auto; display: block; mix-blend-mode: multiply; position: relative; z-index: 1; }
 .pov-view-tag { position: absolute; left: 18px; bottom: 16px; font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; color: var(--mute-2); }
 .pov-info { padding: clamp(20px, 3vw, 34px); display: grid; gap: 12px; align-content: start; }
