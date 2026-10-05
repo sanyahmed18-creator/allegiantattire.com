@@ -223,3 +223,40 @@ img[data-source-loc="src/App.tsx:155:14"]{border:none!important;}
 
 /* 8) Admin panel: ADD NEW PRODUCT card */
 .aa-addp{margin-top:14px;background:#fff;color:#000;border:2px dashed #000;padding:14px 16px;}
+
+---
+
+## home-v2 — the rebuilt home page
+
+`home-v2.html` is a standalone home page (no build step, no framework) that
+matches the living store design language and adds the **rail** motion.
+
+| file | what it is |
+| --- | --- |
+| `home-v2.html` | the new home page |
+| `home-v2.css` | design system + rail / card styles |
+| `home-v2.js` | rail engine (drift · drag · momentum · snap) + all interactions |
+| `catalog.js` | all 95 SKUs / 11 categories — real prices, MOQs, imagery paths |
+| `tools/preview-server.mjs` | `node tools/preview-server.mjs 8000` → preview (″/″ opens home-v2) |
+| `tools/go-live.sh` | publish it as `index.html` (or `--rollback`) |
+
+### The rail
+Transform-driven carousel with three motions layered together:
+
+1. **drift** — glides continuously, wrapping seamlessly (content is duplicated,
+   so the rail has no start or end);
+2. **drag** — pointer/touch drag scrubs it with velocity tracking, momentum
+   decays on release;
+3. **snap** — the rail eases onto the nearest hanger so a piece lands centred.
+
+Hover or keyboard focus pauses the drift, arrow buttons step one piece at a
+time, the wheel maps to horizontal motion, and `prefers-reduced-motion` turns
+the drift off entirely. Hanger hooks above the cards glide on the same
+transform as the products.
+
+### Going live
+```bash
+./tools/go-live.sh              # index.html ← home-v2.html (backup kept)
+./tools/go-live.sh --rollback   # undo
+```
+`home-v2.css`, `home-v2.js` and `catalog.js` must be deployed next to it.
