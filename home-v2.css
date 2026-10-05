@@ -114,7 +114,7 @@ em { font-style: normal; }
   /* garments sized relative to the viewport so ~3 pieces share the fold */
   .rail-viewport { --hw: clamp(104px, 30vw, 150px); --hgap: clamp(9px, 2.6vw, 18px); }
   .rail-labels { gap: 10px; }
-  .rail-labels .lab:last-child { display: none; }
+  .rail-labels .lab:last-child, .rail-sep { display: none; }
   .rail-caption { margin-top: 4px; }
   .tray-track a, .tray-track span { font-size: 8px; padding: 0 14px; }
 }

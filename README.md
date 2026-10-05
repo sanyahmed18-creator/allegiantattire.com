@@ -226,37 +226,63 @@ img[data-source-loc="src/App.tsx:155:14"]{border:none!important;}
 
 ---
 
-## home-v2 — the rebuilt home page
+## home-v2 — the rebuilt home page (“the rail”)
 
-`home-v2.html` is a standalone home page (no build step, no framework) that
-matches the living store design language and adds the **rail** motion.
+`home-v2.html` is a standalone home page (no build step, no framework) built to
+match the reference: a warm off-white studio, garments hanging from a chrome
+rail on wooden hangers, drifting past the viewer.
 
 | file | what it is |
 | --- | --- |
 | `home-v2.html` | the new home page |
-| `home-v2.css` | design system + rail / card styles |
-| `home-v2.js` | rail engine (drift · drag · momentum · snap) + all interactions |
+| `home-v2.css` | design system, rail geometry and motion styling |
+| `home-v2.js` | rail engine (drift · drag · depth · lift · explore) + all UI |
 | `catalog.js` | all 95 SKUs / 11 categories — real prices, MOQs, imagery paths |
 | `tools/preview-server.mjs` | `node tools/preview-server.mjs 8000` → preview (″/″ opens home-v2) |
+| `tools/rail-check.mjs` | structural + interaction checks (`npm i jsdom` once) |
 | `tools/go-live.sh` | publish it as `index.html` (or `--rollback`) |
+| `tools/grab-video.html` | browser bridge for pulling a remote video into the workspace |
+| `tools/analyze-video.sh` | frame-by-frame study of any reference video |
 
 ### The rail
-Transform-driven carousel with three motions layered together:
+Every garment hangs from the chrome rail on a wooden hanger — string, hanger
+and photo are one unit, so they can never drift out of register. Five motions
+are layered:
 
-1. **drift** — glides continuously, wrapping seamlessly (content is duplicated,
-   so the rail has no start or end);
-2. **drag** — pointer/touch drag scrubs it with velocity tracking, momentum
-   decays on release;
-3. **snap** — the rail eases onto the nearest hanger so a piece lands centred.
+1. **drift** — a slow continuous glide at sample-room speed;
+2. **drag** — pointer drag scrubs the rail, velocity is tracked and momentum
+   decays on release (a real drag never opens a product);
+3. **depth** — pieces shrink, tip away (`rotateY`) and lose z-order as they
+   leave the centre, so the rail reads as receding into the room;
+4. **lift** — hover (or keyboard focus) brings a piece forward, scales it and
+   dims every other piece; the caption below follows it;
+5. **explore** — click opens the piece over a blurred rail with FRONT / BACK,
+   “view in the shop”, “add to bag” and a pre-filled WhatsApp quote.
 
-Hover or keyboard focus pauses the drift, arrow buttons step one piece at a
-time, the wheel maps to horizontal motion, and `prefers-reduced-motion` turns
-the drift off entirely. Hanger hooks above the cards glide on the same
-transform as the products.
+The photo sits on its own opaque plate with `mix-blend-mode: multiply`, so the
+white studio background of our `/images/*.webp` shots dissolves into the cream
+wall (a transform on the card would otherwise isolate the blending).
+
+### The rest of the page
+Minimal MENU / wordmark / SHOP + BAG header, a numbered “THE LINE” category
+index (jumps the rail to that category), print & stitch list, 6-step process,
+counters, uniform division, client quotes, FAQ, quote form → WhatsApp, and the
+accent marquee tray pinned to the bottom of the viewport with the rotating
+“ON THE RAIL” badge.
 
 ### Going live
 ```bash
-./tools/go-live.sh              # index.html ← home-v2.html (backup kept)
+./tools/go-live.sh              # index.html ← home-v2.html
 ./tools/go-live.sh --rollback   # undo
 ```
-`home-v2.css`, `home-v2.js` and `catalog.js` must be deployed next to it.
+The existing single-page app is preserved: the first run copies it to
+`spa.html` (so the Design Lab, admin and product pages stay reachable at
+`/spa.html`) and to `index-spa-backup.html` for rollback. Deploy `home-v2.css`,
+`home-v2.js`, `catalog.js`, `logo.png` and `spa.html` next to `index.html`.
+
+### Checks
+```bash
+npm i jsdom
+node tools/rail-check.mjs       # 85 pieces, hangers on the rail, hover lift,
+                                # tap → explore, bag → WhatsApp hand-off
+```
