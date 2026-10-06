@@ -12,6 +12,214 @@
 (function () {
   "use strict";
 
+  // ============================================================
+  // SEO: JSON-LD Structured Data (Schema.org)
+  // Injects the right schema based on the current URL path.
+  // ============================================================
+  var SCHEMAS_INJECTED = false;
+  function injectSchemas() {
+    if (SCHEMAS_INJECTED) return;
+    // Remove any previous schema we injected (for SPA navigations)
+    var old = document.querySelectorAll('script[data-aa-schema]');
+    for (var i = 0; i < old.length; i++) old[i].parentNode.removeChild(old[i]);
+
+    var path = window.location.pathname.replace(/\/+$/, "") || "/";
+    var head = document.head || document.getElementsByTagName("head")[0];
+    if (!head) return;
+
+    function addSchema(id, obj) {
+      var s = document.createElement("script");
+      s.type = "application/ld+json";
+      s.setAttribute("data-aa-schema", id);
+      s.textContent = JSON.stringify(obj);
+      head.appendChild(s);
+    }
+
+    // 1) LocalBusiness — always present
+    addSchema("localbusiness", {
+      "@context": "https://schema.org",
+      "@type": "ClothingManufacturer",
+      "@id": "https://allegiantattire.store/#organization",
+      "name": "Allegiant Attire",
+      "alternateName": "Allegiant Attire UAE",
+      "url": "https://allegiantattire.store/",
+      "logo": "https://allegiantattire.store/logo.png",
+      "image": "https://allegiantattire.store/images/hero-apparel.webp",
+      "description": "Custom clothing manufacturer in Dubai & Ajman, UAE. Wholesale t-shirts, polos, hoodies, uniforms, caps. In-house DTF printing, embroidery, sublimation and screen printing. Same-day delivery across the UAE.",
+      "telephone": "+971-58-204-5242",
+      "email": "info@allegiantattire.store",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "New Industrial Area 2",
+        "addressLocality": "Ajman",
+        "addressRegion": "Ajman",
+        "addressCountry": "AE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "25.3925",
+        "longitude": "55.4697"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "09:00",
+          "closes": "19:00"
+        }
+      ],
+      "areaServed": [
+        { "@type": "City", "name": "Dubai" },
+        { "@type": "City", "name": "Sharjah" },
+        { "@type": "City", "name": "Ajman" },
+        { "@type": "City", "name": "Abu Dhabi" },
+        { "@type": "Country", "name": "United Arab Emirates" }
+      ],
+      "sameAs": [],
+      "priceRange": "AED",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Custom Apparel & Printing Services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Custom T-Shirts" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Custom Polo Shirts" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Custom Hoodies" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "DTF Printing" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Screen Printing" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Embroidery Services" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sublimation Printing" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "School Uniforms" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Office Uniforms" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Custom Caps" } }
+        ]
+      }
+    });
+
+    // 2) WebSite with SearchAction
+    addSchema("website", {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Allegiant Attire",
+      "url": "https://allegiantattire.store/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://allegiantattire.store/?search={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    });
+
+    // 3) BreadcrumbList
+    var crumbs = [{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://allegiantattire.store/" }];
+    var breadcrumbNames = {
+      "/custom-t-shirts-dubai": "Custom T-Shirts Dubai",
+      "/custom-polo-shirts-dubai": "Custom Polo Shirts Dubai",
+      "/custom-hoodies-dubai": "Custom Hoodies Dubai",
+      "/dtf-printing-dubai": "DTF Printing Dubai",
+      "/screen-printing-dubai": "Screen Printing Dubai",
+      "/embroidery-services-dubai": "Embroidery Services Dubai",
+      "/school-uniforms-uae": "School Uniforms UAE",
+      "/office-corporate-uniforms-dubai": "Office & Corporate Uniforms Dubai",
+      "/construction-safety-uniforms-uae": "Construction Uniforms UAE",
+      "/activewear-manufacturer-uae": "Activewear Manufacturer UAE",
+      "/custom-caps-dubai": "Custom Caps Dubai",
+      "/private-label-clothing-uae": "Private Label Clothing UAE",
+      "/about-us": "About Us",
+      "/contact": "Contact",
+      "/blog": "Blog & Guides"
+    };
+    var blogNames = {
+      "/blog/choosing-a-bulk-t-shirt-printer-in-the-uae": "Choosing a Bulk T-Shirt Printer in the UAE",
+      "/blog/dtf-printing-in-dubai": "DTF Printing in Dubai",
+      "/blog/how-to-select-the-perfect-customized-hoodie": "How to Select the Perfect Customized Hoodie",
+      "/blog/how-to-design-custom-hoodies-for-business-or-event": "How to Design Custom Hoodies for Business or Event",
+      "/blog/best-uniform-supplier-in-dubai-2026": "Best Uniform Supplier in Dubai 2026",
+      "/blog/custom-hoodies-dubai-price-guide": "Custom Hoodies Dubai Price Guide"
+    };
+    if (path.indexOf("/blog/") === 0 && blogNames[path]) {
+      crumbs.push({ "@type": "ListItem", "position": 2, "name": "Blog & Guides", "item": "https://allegiantattire.store/blog/" });
+      crumbs.push({ "@type": "ListItem", "position": 3, "name": blogNames[path], "item": "https://allegiantattire.store" + path + "/" });
+    } else if (path.indexOf("/blog") === 0) {
+      crumbs.push({ "@type": "ListItem", "position": 2, "name": "Blog & Guides", "item": "https://allegiantattire.store/blog/" });
+    } else if (breadcrumbNames[path]) {
+      crumbs.push({ "@type": "ListItem", "position": 2, "name": breadcrumbNames[path], "item": "https://allegiantattire.store" + path + "/" });
+    }
+    if (crumbs.length > 1) {
+      addSchema("breadcrumb", { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": crumbs });
+    }
+
+    // 4) FAQPage schema for service pages
+    var faqPages = {
+      "/custom-t-shirts-dubai": [
+        { q: "What is the minimum order for custom t-shirts in Dubai?", a: "10-12 pieces per style for printed blanks. Cut-and-sew factory runs start at 100 pieces per colour." },
+        { q: "How fast can you deliver custom t-shirts in Dubai?", a: "Same day for in-house DTF on existing blanks. 1-2 days for standard custom orders anywhere in the UAE." },
+        { q: "What fabric weights do you use?", a: "180-240 GSM combed cotton for tees, pre-shrunk and wash-tested. Heavier 300 GSM+ options available on request." },
+        { q: "Can you add my own neck label and hang tags?", a: "Yes — woven neck labels, size chips, hang tags and branded packaging are produced in-house." }
+      ],
+      "/dtf-printing-dubai": [
+        { q: "Is there a minimum order for DTF printing?", a: "No. DTF starts at a single piece, which makes it the cheapest way to sample before a bulk run." },
+        { q: "Can you do same-day DTF in Dubai?", a: "Yes, for artwork received before noon on stock blanks or garments you supply." },
+        { q: "What size transfers can you print?", a: "Up to A3. Larger artwork is split, or moved to sublimation or screen printing." },
+        { q: "How many washes does a DTF print last?", a: "30+ cycles tested when washed inside out at 30-40°C and cured correctly." }
+      ]
+    };
+    var faqs = faqPages[path];
+    if (faqs && faqs.length) {
+      var entities = [];
+      for (var fi = 0; fi < faqs.length; fi++) {
+        entities.push({ "@type": "Question", "name": faqs[fi].q, "acceptedAnswer": { "@type": "Answer", "text": faqs[fi].a } });
+      }
+      addSchema("faq", { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": entities });
+    }
+
+    // 5) Article schema for blog posts
+    var articleData = {
+      "/blog/dtf-printing-in-dubai": {
+        title: "DTF Printing in Dubai: Fast, Reliable & Custom",
+        desc: "Why in-house DTF beats outsourcing when you need custom tees within hours — cost, wash tests & when to choose it over screen print.",
+        date: "2026-03-25",
+        img: "https://allegiantattire.store/images/s-dtf.jpg"
+      },
+      "/blog/choosing-a-bulk-t-shirt-printer-in-the-uae": {
+        title: "Choosing a Bulk T-Shirt Printer in the UAE: 7 Checks",
+        desc: "Methods, fabric truths, portfolio checks & red flags — how procurement teams vet a garment partner.",
+        date: "2026-01-12",
+        img: "https://allegiantattire.store/images/p-tee.jpg"
+      },
+      "/blog/how-to-select-the-perfect-customized-hoodie": {
+        title: "How to Select the Perfect Customized Hoodie",
+        desc: "GSM, fleece types, fit blocks & print zones — the checklist our merchandisers use before approving any hoodie run.",
+        date: "2026-02-14",
+        img: "https://allegiantattire.store/images/p-hoodie.jpg"
+      },
+      "/blog/how-to-design-custom-hoodies-for-business-or-event": {
+        title: "How to Design Custom Hoodies for Business or Event",
+        desc: "From audience to delivery day: graphics, placement, sizing curves & budgeting for 50-5,000 pcs.",
+        date: "2026-01-30",
+        img: "https://allegiantattire.store/images/p-hoodie.jpg"
+      }
+    };
+    var art = articleData[path];
+    if (art) {
+      addSchema("article", {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": art.title,
+        "description": art.desc,
+        "image": art.img,
+        "datePublished": art.date,
+        "dateModified": art.date,
+        "author": { "@type": "Organization", "name": "Allegiant Attire", "url": "https://allegiantattire.store/" },
+        "publisher": { "@type": "Organization", "name": "Allegiant Attire", "logo": { "@type": "ImageObject", "url": "https://allegiantattire.store/logo.png" } },
+        "mainEntityOfPage": { "@type": "WebPage", "@id": "https://allegiantattire.store" + path + "/" }
+      });
+    }
+
+    SCHEMAS_INJECTED = true;
+  }
+
+  // Inject schemas early
+  injectSchemas();
+
   var GRID_LOC = "src/App.tsx:273:8";      // category cards grid
   var SECTION_LOC = "src/App.tsx:271:6";   // category index section
   var CARD_LOC = "src/App.tsx:287:12";     // single category card (button)
@@ -1431,6 +1639,8 @@
   var migrated = false;
   function run() {
     try {
+      SCHEMAS_INJECTED = false; // allow re-inject on SPA route change
+      injectSchemas();
       if (!migrated) {
         migrated = true;
         ensureCatalogGeneration();
